@@ -7,13 +7,13 @@
   <style>
     :root {
       --bg-main: #05050d;
-      --bg-card: rgba(18, 16, 38, 0.7);
+      --bg-card: rgba(18, 16, 38, 0.75);
       --accent-purple: #9d4edd;
       --accent-cyan: #00f5d4;
       --accent-red: #ff0055;
       --text: #ffffff;
       --text-muted: #a0a5c0;
-      --border: rgba(157, 78, 221, 0.3);
+      --border: rgba(157, 78, 221, 0.35);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
@@ -46,13 +46,13 @@
 
     @keyframes twinkle {
       0%, 100% { opacity: 0.2; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.2); }
+      50% { opacity: 1; transform: scale(1.3); }
     }
 
     /* NAVIGACE */
     header {
-      background: rgba(10, 8, 20, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(10, 8, 20, 0.85);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
@@ -81,7 +81,7 @@
 
     @keyframes glow {
       0% { filter: drop-shadow(0 0 2px var(--accent-purple)); }
-      100% { filter: drop-shadow(0 0 10px var(--accent-cyan)); }
+      100% { filter: drop-shadow(0 0 12px var(--accent-cyan)); }
     }
 
     .nav-links {
@@ -97,7 +97,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      position: relative;
     }
 
     .nav-links a:hover {
@@ -117,7 +116,7 @@
       margin-bottom: 15px;
       text-transform: uppercase;
       letter-spacing: 3px;
-      text-shadow: 0 0 20px rgba(157, 78, 221, 0.6);
+      text-shadow: 0 0 25px rgba(157, 78, 221, 0.7);
       animation: float 4s infinite ease-in-out;
     }
 
@@ -154,7 +153,7 @@
       box-shadow: 0 0 25px rgba(0, 245, 212, 0.5);
     }
 
-    /* KONTEJNER A KARTY */
+    /* OBSAH & KARTY */
     .container {
       max-width: 1100px;
       margin: 20px auto;
@@ -167,7 +166,7 @@
       padding: 30px;
       border-radius: 16px;
       border: 1px solid var(--border);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
       margin-bottom: 30px;
       animation: fadeIn 0.5s ease-in-out;
     }
@@ -239,7 +238,7 @@
 
     .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
 
-    /* ADMIN STATISTIKY */
+    /* ADMIN STATISTIKY & POLOŽKY */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -257,7 +256,6 @@
 
     .stat-number { font-size: 2rem; font-weight: bold; color: var(--accent-cyan); }
 
-    /* SEZNAM PŘIHLÁŠEK */
     .app-item {
       background: rgba(10, 8, 20, 0.6);
       padding: 20px;
@@ -288,7 +286,7 @@
 </head>
 <body>
 
-  <!-- ANIMOVANÉ HVĚZDY POZADÍ -->
+  <!-- ANIMOVANÉ POZADÍ -->
   <div id="stars-bg"></div>
 
   <!-- NAVIGACE -->
@@ -311,14 +309,14 @@
     <h1>GALAXY DEATH SMP</h1>
     <p>Nemilosrdný SMP server v temném vesmíru. Získej sílu hvězd, přežij a ovládni galaxii!</p>
     <div class="ip-box" onclick="copyIP()">
-      <span>IP: play.galaxydeathsmp.cz</span>
+      <span>IP: galaxydeathsmp.minecraft.co.com</span>
       <span style="font-size: 0.8rem; color: var(--accent-cyan);">(Kopírovat)</span>
     </div>
   </section>
 
   <div class="container">
 
-    <!-- STRÁNKA: DOMŮ -->
+    <!-- DOMŮ -->
     <div id="page-home">
       <div class="grid-3">
         <div class="card">
@@ -341,7 +339,7 @@
       </div>
     </div>
 
-    <!-- STRÁNKA: PRAVIDLA -->
+    <!-- PRAVIDLA -->
     <div id="page-rules" class="hidden">
       <div class="card">
         <h2>📜 Pravidla Galaxie</h2>
@@ -354,7 +352,7 @@
       </div>
     </div>
 
-    <!-- STRÁNKA: AUTH (LOGIN / REGISTRACE) -->
+    <!-- REGISTRACE / PŘIHLÁŠENÍ -->
     <div id="page-auth" class="hidden">
       <div class="card" style="max-width: 500px; margin: 0 auto;">
         <div id="loginForm">
@@ -391,7 +389,7 @@
       </div>
     </div>
 
-    <!-- STRÁNKA: NÁBOR -->
+    <!-- NÁBOR -->
     <div id="page-recruitment" class="hidden">
       <div id="recruitmentLoggedOut" class="card">
         <h2>Nábor do Týmu Galaxy Death SMP</h2>
@@ -426,7 +424,7 @@
       </div>
     </div>
 
-    <!-- STRÁNKA: ADMIN PANEL -->
+    <!-- ADMIN PANEL -->
     <div id="page-admin" class="hidden">
       <div class="card">
         <h2>Administrace Náborů</h2>
@@ -476,15 +474,15 @@
     for (let i = 0; i < 120; i++) {
       const star = document.createElement('div');
       star.className = 'star';
-      star.style.width = Math.random() * 3 + 'px';
+      star.style.width = (Math.random() * 3 + 1) + 'px';
       star.style.height = star.style.width;
       star.style.left = Math.random() * 100 + '%';
       star.style.top = Math.random() * 100 + '%';
-      star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+      star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
       bg.appendChild(star);
     }
 
-    // DATABÁZE A UŽIVATELÉ
+    // VYTVOŘENÍ VÝCHOZÍCH DAT
     if (!localStorage.getItem('users')) {
       const defaultUsers = [{ nick: 'Admin', email: 'admin@galaxydeathsmp.cz', pass: 'admin123', isAdmin: true }];
       localStorage.setItem('users', JSON.stringify(defaultUsers));
@@ -688,8 +686,8 @@
     }
 
     function copyIP() {
-      navigator.clipboard.writeText('play.galaxydeathsmp.cz');
-      alert('IP adresa play.galaxydeathsmp.cz byla zkopírována do schránky!');
+      navigator.clipboard.writeText('galaxydeathsmp.minecraft.co.com');
+      alert('IP adresa galaxydeathsmp.minecraft.co.com byla zkopírována do schránky!');
     }
 
     updateNav();
